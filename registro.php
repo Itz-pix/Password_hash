@@ -3,7 +3,7 @@
     Tambien se investigo como mandar informacion y guardarla de manera 
     local con un archivo .json -->
 <?php
-$archivo = "usuarios.json";
+$archivo = "registros.json";
 $msg = "";
 
 // Le asignamos los valores solicitados y leidos en las variables para su uso
