@@ -23,20 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } 
         else {
             // Verificamos si el usuario existe antes de seguir y sino hace uno en blanco
-            $usuarios = [];
+            $registros = [];
             if (file_exists($archivo)) {
                 $contenido = file_get_contents($archivo);
-                $usuarios = json_decode($contenido, true);
+                $registros = json_decode($contenido, true);
             }
 
         // Si no fue valido lo deja en blanco
-        if ($usuarios == "") {
-            $usuarios = [];
+        if ($registros == "") {
+            $registros = [];
         }
 
         // Verificamos si el usuario (login) ya existe
         $existe = false;
-        foreach ($usuarios as $u) {
+        foreach ($registros as $u) {
             if (strtolower($u['login']) === strtolower($login)) {
                 $existe = true;
                 break;
@@ -47,14 +47,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             // Finalmente confirmamos al nuevo usuario y su informacion
             // Ademas se hashea la contraseña con el metodo solicitado
-            $usuarios[] = [
+            $registros[] = [
                 "nombre" => $nombre,
                 "login"  => $login,
                 "pass"   => password_hash($pass, PASSWORD_DEFAULT)
             ];
             
             // Manda la informacion en el codigo usuarios.json y entrega un mensaje de exito 
-            file_put_contents($archivo, json_encode($usuarios, JSON_PRETTY_PRINT));
+            file_put_contents($archivo, json_encode($registros, JSON_PRETTY_PRINT));
             $msg = "¡Usuario guardado con exito!";
         }
     }
