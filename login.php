@@ -1,5 +1,5 @@
 <?php
-$archivo = "usuarios.json";
+$archivo = "registros.json";
 $msg = "";
 
 // Leemos y asignamos los valores ingresados a variables 
